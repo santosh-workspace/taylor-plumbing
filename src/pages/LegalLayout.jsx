@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
-import { ArrowLeft, Plus } from 'lucide-react'
+import { ArrowLeft } from 'lucide-react'
+import logo from '../assets/logo.png'
 
 export default function LegalLayout({ title, updated, children }) {
   return (
@@ -7,25 +8,22 @@ export default function LegalLayout({ title, updated, children }) {
       <header className="border-b border-divider bg-surface">
         <div className="max-w-3xl mx-auto px-6 sm:px-10 py-5 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2.5">
-            <span className="grid h-9 w-9 place-items-center rounded-xl bg-primary text-white">
-              <Plus className="h-5 w-5" strokeWidth={2.6} />
-            </span>
-            <span className="font-display font-bold text-lg tracking-tight text-ink">Santkrupa Hospital</span>
+            <img src={logo} alt="Taylor Plumbing & Heating" className="h-10 w-auto" />
           </Link>
-          <Link to="/" className="inline-flex items-center gap-1.5 text-sm font-medium text-primary lift-on-hover">
+          <Link to="/" className="inline-flex items-center gap-1.5 text-sm font-medium text-accent lift-on-hover">
             <ArrowLeft className="h-4 w-4" /> Back to site
           </Link>
         </div>
       </header>
       <main className="max-w-3xl mx-auto px-6 sm:px-10 py-16">
-        <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-primary mb-3">Legal</p>
+        <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-accent mb-3">Legal</p>
         <h1 className="font-display text-4xl sm:text-5xl font-bold tracking-tighter mb-3">{title}</h1>
         <p className="text-muted text-sm mb-12">Last updated: {updated}</p>
         <div className="space-y-6 text-ink/80 leading-relaxed">{children}</div>
       </main>
       <footer className="border-t border-divider">
         <div className="max-w-3xl mx-auto px-6 sm:px-10 py-6 text-xs text-muted">
-          © {new Date().getFullYear()} Santkrupa Hospital, Alandi, Pune.
+          © {new Date().getFullYear()} Taylor Plumbing &amp; Heating Installation Ltd, Norwich.
         </div>
       </footer>
     </div>

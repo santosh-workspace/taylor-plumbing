@@ -1,5 +1,5 @@
 {
-  "name": "santkrupa-hospital",
+  "name": "taylor-plumbing-heating",
   "private": true,
   "version": "1.0.0",
   "type": "module",
@@ -10,10 +10,13 @@
   },
   "dependencies": {
     "gsap": "^3.12.5",
+    "leaflet": "^1.9.4",
     "lucide-react": "^0.454.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.28.0"
+    "react-leaflet": "^4.2.1",
+    "react-router-dom": "^6.28.0",
+    "resend": "^6.17.2"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.3.4",

@@ -5,11 +5,11 @@
 @layer base {
   html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   body { @apply bg-background text-ink font-body; overflow-x: hidden; }
-  ::selection { background-color: #0EA5B7; color: #FFFFFF; }
+  ::selection { background-color: #146B9E; color: #FFFFFF; }
   ::-webkit-scrollbar { width: 10px; }
-  ::-webkit-scrollbar-track { background: #F7FAFB; }
-  ::-webkit-scrollbar-thumb { background: #5FC7D4; border-radius: 10px; }
-  ::-webkit-scrollbar-thumb:hover { background: #0EA5B7; }
+  ::-webkit-scrollbar-track { background: #FAF8F3; }
+  ::-webkit-scrollbar-thumb { background: #EFC12E; border-radius: 10px; }
+  ::-webkit-scrollbar-thumb:hover { background: #B8860B; }
 }
 
 @layer components {
@@ -31,32 +31,63 @@
   .lift-on-hover { transition: transform 0.3s cubic-bezier(0.25,0.46,0.45,0.94); }
   .lift-on-hover:hover { transform: translateY(-1px); }
   .gradient-text {
-    background: linear-gradient(135deg, #0EA5B7 0%, #0B8494 100%);
+    background: linear-gradient(135deg, #146B9E 0%, #0F4F76 100%);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
   }
   .glass {
-    background: rgba(247,250,251,0.72);
+    background: rgba(250,248,243,0.75);
     backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(14,165,183,0.18);
+    border: 1px solid rgba(184,134,11,0.18);
   }
   .glass-dark {
-    background: rgba(8,23,28,0.72);
+    background: rgba(10,10,10,0.72);
     backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
   }
-  .ring-pulse { box-shadow: 0 0 0 0 rgba(14,165,183,0.6); animation: ring-pulse 2s infinite; }
+  .ring-pulse { box-shadow: 0 0 0 0 rgba(20,107,158,0.6); animation: ring-pulse 2s infinite; }
   @keyframes ring-pulse {
-    0%   { box-shadow: 0 0 0 0 rgba(14,165,183,0.6); }
-    70%  { box-shadow: 0 0 0 14px rgba(14,165,183,0); }
-    100% { box-shadow: 0 0 0 0 rgba(14,165,183,0); }
+    0%   { box-shadow: 0 0 0 0 rgba(20,107,158,0.6); }
+    70%  { box-shadow: 0 0 0 14px rgba(20,107,158,0); }
+    100% { box-shadow: 0 0 0 0 rgba(20,107,158,0); }
   }
   .grid-bg {
     background-image:
-      linear-gradient(rgba(14,165,183,0.07) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(14,165,183,0.07) 1px, transparent 1px);
+      linear-gradient(rgba(184,134,11,0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(184,134,11,0.07) 1px, transparent 1px);
     background-size: 40px 40px;
   }
   .text-balance { text-wrap: balance; }
   .scrollbar-hide::-webkit-scrollbar { display: none; }
+
+  .kenburns-bg {
+    animation: kenburns 26s ease-in-out infinite alternate;
+    will-change: transform;
+  }
+  @keyframes kenburns {
+    0%   { transform: scale(1.08) translate(0, 0); }
+    100% { transform: scale(1.22) translate(-2%, -1.5%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .kenburns-bg { animation: none; transform: scale(1.08); }
+  }
+
+  .map-pin-dot {
+    display: block; width: 14px; height: 14px; border-radius: 9999px;
+    background: #146B9E; border: 2px solid #fff;
+  }
+  .leaflet-dark.leaflet-container { background: #0a0a0a; font-family: inherit; }
+  .leaflet-dark .leaflet-bar a,
+  .leaflet-dark .leaflet-bar a:hover {
+    background: rgba(255,255,255,0.06); color: #fff; border-bottom-color: rgba(255,255,255,0.12);
+  }
+  .leaflet-dark.leaflet-container .leaflet-control-attribution {
+    background: rgba(10,10,10,0.55); color: rgba(255,255,255,0.55);
+  }
+  .leaflet-dark.leaflet-container .leaflet-control-attribution a { color: rgba(255,255,255,0.75); }
+  .leaflet-dark .leaflet-tooltip.pin-tooltip {
+    background: #146B9E; color: #fff; border: none; border-radius: 9999px;
+    padding: 4px 10px; font-size: 11px; font-weight: 600; box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+  }
+  .leaflet-dark .leaflet-tooltip.pin-tooltip::before { display: none; }
 }
 
 @layer utilities {

@@ -4,17 +4,20 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: '#0EA5B7',        // medical teal
-        'primary-dark': '#0B8494',
-        'primary-light': '#5FC7D4',
-        accent: '#2563EB',         // medical blue
-        'accent-dark': '#1D4ED8',
-        background: '#F7FAFB',
+        // Sourced from Taylor Plumbing & Heating's real logo/site (gold #ffdd11 + logo blue + near-black).
+        // Gold is reserved for fills/backgrounds and text-on-dark (matches the original site's yellow-on-black
+        // banners); blue carries small text/links on light backgrounds where raw gold reads too low-contrast.
+        primary: '#EFC12E',        // brand gold (fills, buttons w/ dark text, dark-bg headings/icons)
+        'primary-dark': '#B8860B', // deep gold (gradients, hover states)
+        'primary-light': '#F7DE8A',// pale gold (text/icons on dark sections)
+        accent: '#146B9E',         // logo blue (text, links, icons on light backgrounds)
+        'accent-dark': '#0F4F76',
+        background: '#FAF8F3',
         surface: '#FFFFFF',
-        ink: '#12222A',
-        muted: '#5C7078',
-        divider: '#DCE7EA',
-        deep: '#08171C',
+        ink: '#141414',
+        muted: '#6B6560',
+        divider: '#E8E2D4',
+        deep: '#0A0A0A',
       },
       fontFamily: {
         display: ['"Space Grotesk"', '"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
