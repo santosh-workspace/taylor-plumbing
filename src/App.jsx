@@ -26,8 +26,8 @@ const SECTION_IMAGES = {
 /* `strong` = more tint, for sections where body text sits directly on the photo with no card behind it */
 function SectionBg({ image, dark, strong, faint }) {
   const overlayClass = dark
-    ? (faint ? 'bg-deep/55' : strong ? 'bg-deep/78' : 'bg-deep/62')
-    : (faint ? 'bg-background/40' : strong ? 'bg-background/82' : 'bg-background/65')
+    ? (faint ? 'bg-deep/35' : strong ? 'bg-deep/62' : 'bg-deep/42')
+    : (faint ? 'bg-background/25' : strong ? 'bg-background/68' : 'bg-background/45')
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
       <img
@@ -35,7 +35,7 @@ function SectionBg({ image, dark, strong, faint }) {
         alt=""
         aria-hidden="true"
         className="kenburns-bg h-full w-full object-cover"
-        style={{ filter: 'blur(9px)' }}
+        style={{ filter: 'blur(3px)' }}
       />
       <div className={`absolute inset-0 ${overlayClass}`} />
     </div>
