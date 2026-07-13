@@ -344,7 +344,7 @@ function Hero({ onOpenQuote }) {
         ))}
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 pt-32 pb-20 min-h-[100dvh] flex flex-col justify-end">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 pt-20 pb-20 min-h-[100dvh] flex flex-col justify-end">
         <p className="hero-meta font-mono text-[10px] sm:text-xs uppercase tracking-[0.25em] text-primary-light mb-6">
           Plumbing &amp; Heating Engineers &middot; Norwich, Norfolk
         </p>
