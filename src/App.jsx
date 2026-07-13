@@ -26,8 +26,8 @@ const SECTION_IMAGES = {
 /* `strong` = more tint, for sections where body text sits directly on the photo with no card behind it */
 function SectionBg({ image, dark, strong, faint }) {
   const overlayClass = dark
-    ? (faint ? 'bg-deep/35' : strong ? 'bg-deep/62' : 'bg-deep/42')
-    : (faint ? 'bg-background/25' : strong ? 'bg-background/68' : 'bg-background/45')
+    ? (faint ? 'bg-deep/20' : strong ? 'bg-deep/62' : 'bg-deep/42')
+    : (faint ? 'bg-background/18' : strong ? 'bg-background/68' : 'bg-background/45')
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
       <img
@@ -705,7 +705,7 @@ function Features() {
 
   return (
     <section ref={ref} className="relative overflow-hidden">
-      <SectionBg image={SECTION_IMAGES.features} />
+      <SectionBg image={SECTION_IMAGES.features} faint />
       <div className="relative z-10 py-24 sm:py-32 max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
         <div className="max-w-2xl mb-14">
           <p className="font-mono text-[10px] sm:text-xs uppercase tracking-[0.2em] text-accent mb-4">Why homeowners call us first</p>
