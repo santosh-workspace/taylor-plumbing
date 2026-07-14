@@ -13,13 +13,39 @@ import {
 } from 'lucide-react'
 import logo from './assets/logo.png'
 import galleryBoilerInstall from './assets/gallery-boiler-install.jpg'
+import heroBg from './assets/hero-bg.jpg'
+import servicesBg from './assets/services/services-bg.jpg'
+import featuresBg from './assets/services/features-bg.jpg'
+import plumbingImg from './assets/services/plumbing.jpg'
+import centralHeatingImg from './assets/services/central-heating.jpg'
+import emergencyPlumberImg from './assets/services/emergency-plumber.jpg'
+import boilerFaultFindingImg from './assets/services/boiler-fault-finding.jpg'
+import centralHeatingInstallImg from './assets/services/central-heating-install.jpg'
 
 /* Blurred backdrop photos used behind section content - kept subtle via a heavy blur + tint overlay */
 const SECTION_IMAGES = {
-  features: 'https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?auto=format&fit=crop&w=2400&q=60',
-  services: 'https://images.unsplash.com/photo-1650551182956-47efa0f90b64?auto=format&fit=crop&w=2400&q=60',
+  features: featuresBg,
+  services: servicesBg,
   gallery: 'https://images.unsplash.com/photo-1601058268499-e52658b8bb88?auto=format&fit=crop&w=2400&q=60',
   reviews: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?auto=format&fit=crop&w=2400&q=60',
+}
+
+/* ============================== FADE-IN IMAGE ============================== */
+/* Fades an image in once its bytes have actually arrived, instead of popping in mid-layout */
+function FadeImg({ src, alt = '', className = '', priority = false, style, ...rest }) {
+  const [loaded, setLoaded] = useState(false)
+  return (
+    <img
+      src={src}
+      alt={alt}
+      style={style}
+      loading={priority ? 'eager' : 'lazy'}
+      fetchPriority={priority ? 'high' : 'auto'}
+      onLoad={() => setLoaded(true)}
+      className={`${className} transition-opacity duration-700 ease-out ${loaded ? 'opacity-100' : 'opacity-0'}`}
+      {...rest}
+    />
+  )
 }
 
 /* ============================== SECTION BACKDROP ============================== */
@@ -30,7 +56,7 @@ function SectionBg({ image, dark, strong, faint }) {
     : (faint ? 'bg-background/18' : strong ? 'bg-background/68' : 'bg-background/45')
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      <img
+      <FadeImg
         src={image}
         alt=""
         aria-hidden="true"
@@ -100,7 +126,7 @@ const MAIN_SERVICES = [
     title: 'Plumbing',
     tagline: 'General plumbing, start to finish',
     text: 'General plumbing is one of our main services. Whether it’s a leaking tap, a burst pipe or a full bathroom installation, we have everything covered - no job is too small.',
-    image: 'https://images.unsplash.com/photo-1542013936693-884638332954?auto=format&fit=crop&w=2400&q=80',
+    image: plumbingImg,
     bullets: ['Leaks, burst pipes & overflows', 'Taps, tanks & cylinders', 'Pump replacement & cold-water filtering', 'Service & maintenance contracts'],
   },
   {
@@ -108,18 +134,18 @@ const MAIN_SERVICES = [
     title: 'Central Heating',
     tagline: 'Specialist installation & servicing',
     text: 'A specialist central heating installation and service company, offering the deep expertise and high level of customer service you’d expect from a leader in the field.',
-    image: 'https://images.unsplash.com/photo-1650551182991-b07558247564?auto=format&fit=crop&w=2400&q=80',
+    image: centralHeatingImg,
     bullets: ['New high-efficiency boilers & pipework', 'Radiators, TRVs & underfloor heating', 'Powerflushing & unvented cylinders', 'Landlord gas safety certificates'],
     subServices: [
       {
         title: 'Boiler Breakdowns – Fault Finding Process',
         text: 'A systematic check of flow and return pipes, the boiler flame, flue position, system pressure and controls - so the fault is found fast, not guessed at.',
-        image: 'https://images.unsplash.com/photo-1703041555997-f51216e6a532?auto=format&fit=crop&w=2400&q=80',
+        image: boilerFaultFindingImg,
       },
       {
         title: 'Central Heating Repair and Installation Services',
         text: 'New boiler, radiators, heating controls and pipework - fitted, powerflushed, pressure tested and signed off with a Gas Safe certificate.',
-        image: 'https://images.unsplash.com/photo-1613063457061-eecde6f4b20d?auto=format&fit=crop&w=2400&q=80',
+        image: centralHeatingInstallImg,
       },
     ],
   },
@@ -128,7 +154,7 @@ const MAIN_SERVICES = [
     title: 'Emergency Plumber',
     tagline: 'Fast response, 24hr / 365',
     text: 'Fast-response local emergency plumbers, 24 hours a day, 365 days a year - and we only charge from time of arrival.',
-    image: 'https://images.unsplash.com/photo-1676210134190-3f2c0d5cf58d?auto=format&fit=crop&w=2400&q=80',
+    image: emergencyPlumberImg,
     bullets: ['Boiler breakdowns - combi, conventional & condensing', 'Radiators & pipes', 'Leaks & burst pipes', 'Target response: within 2 hours'],
   },
 ]
@@ -319,10 +345,11 @@ function Hero({ onOpenQuote }) {
   return (
     <section id="home" ref={ref} className="relative min-h-[100dvh] overflow-hidden">
       <div ref={parallaxRef} className="absolute -inset-y-20 inset-x-0 overflow-hidden">
-        <img
-          src="https://images.unsplash.com/photo-1676210134188-4c05dd172f89?auto=format&fit=crop&w=1920&q=80"
+        <FadeImg
+          src={heroBg}
           alt="Plumbing engineer repairing pipework under a sink"
           className="kenburns-bg h-full w-full object-cover brightness-[0.55]"
+          priority
         />
       </div>
       <div className="absolute inset-0 bg-gradient-to-br from-deep/85 via-deep/45 to-deep/75" />
@@ -916,7 +943,7 @@ function ServicesGrid() {
           {MAIN_SERVICES.map((s) => (
             <div key={s.title} className="svc-tile group rounded-3xl border border-white/10 bg-white/[0.03] overflow-hidden flex flex-col transition-all duration-500 hover:-translate-y-1.5 hover:border-white/20">
               <div className="relative h-48 overflow-hidden">
-                <img src={s.image} alt={s.title} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                <FadeImg src={s.image} alt={s.title} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
                 <div className="absolute inset-0 bg-gradient-to-t from-deep via-deep/10 to-transparent" />
                 <span className="absolute bottom-4 left-5 grid h-12 w-12 place-items-center rounded-2xl bg-primary text-ink shadow-lg">
                   <s.icon className="h-6 w-6" strokeWidth={2.3} />
@@ -944,7 +971,7 @@ function ServicesGrid() {
             <div className="svc-sub-row grid sm:grid-cols-2 gap-6">
               {heating.subServices.map((sub) => (
                 <div key={sub.title} className="svc-sub group relative rounded-3xl overflow-hidden border border-white/10 min-h-[220px]">
-                  <img src={sub.image} alt={sub.title} className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                  <FadeImg src={sub.image} alt={sub.title} className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
                   <div className="absolute inset-0 bg-gradient-to-t from-deep via-deep/60 to-deep/10" />
                   <div className="relative p-6 sm:p-8 flex flex-col justify-end h-full">
                     <h3 className="font-display text-lg sm:text-xl font-semibold mb-2 tracking-tight text-white">{sub.title}</h3>
