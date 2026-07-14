@@ -14,8 +14,6 @@ import {
 import logo from './assets/logo.png'
 import galleryBoilerInstall from './assets/gallery-boiler-install.jpg'
 import heroBg from './assets/hero-bg.jpg'
-import servicesBg from './assets/services/services-bg.jpg'
-import featuresBg from './assets/services/features-bg.jpg'
 import plumbingImg from './assets/services/plumbing.jpg'
 import centralHeatingImg from './assets/services/central-heating.jpg'
 import emergencyPlumberImg from './assets/services/emergency-plumber.jpg'
@@ -24,8 +22,6 @@ import centralHeatingInstallImg from './assets/services/central-heating-install.
 
 /* Blurred backdrop photos used behind section content - kept subtle via a heavy blur + tint overlay */
 const SECTION_IMAGES = {
-  features: featuresBg,
-  services: servicesBg,
   gallery: 'https://images.unsplash.com/photo-1601058268499-e52658b8bb88?auto=format&fit=crop&w=2400&q=60',
   reviews: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?auto=format&fit=crop&w=2400&q=60',
 }
@@ -699,7 +695,6 @@ function Features() {
     if (prefersReducedMotion) return
     const ctx = gsap.context(() => {
       gsap.from('.feature-card', {
-        scrollTrigger: { trigger: ref.current, start: 'top 80%', once: true },
         y: 40, opacity: 0, duration: 0.8, stagger: 0.15, ease: 'power3.out',
       })
     }, ref)
@@ -732,7 +727,6 @@ function Features() {
 
   return (
     <section ref={ref} className="relative overflow-hidden">
-      <SectionBg image={SECTION_IMAGES.features} faint />
       <div className="relative z-10 py-24 sm:py-32 max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
         <div className="max-w-2xl mb-14">
           <p className="font-mono text-[10px] sm:text-xs uppercase tracking-[0.2em] text-accent mb-4">Why homeowners call us first</p>
@@ -930,7 +924,6 @@ function ServicesGrid() {
 
   return (
     <section id="services" ref={ref} className="relative overflow-hidden bg-deep text-white py-24 sm:py-32">
-      <SectionBg image={SECTION_IMAGES.services} dark faint />
       <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 mb-14">
         <p className="font-mono text-[10px] sm:text-xs uppercase tracking-[0.2em] text-primary-light mb-4">Our Services</p>
         <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tighter max-w-2xl text-balance">
